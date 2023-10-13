@@ -1,36 +1,46 @@
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-	
-	
-  /**
-   * Called once at the beginning of execution, put your size all in this method
-   */
-  public void settings() {
-	// put your size call here
-    size(400, 400);
-  }
+    float x, y; // Declare variables for object position
 
-  /** 
-   * Called once at the beginning of execution.  Add initial set up
-   * values here i.e background, stroke, fill etc.
-   */
-  public void setup() {
-    background(210, 255, 173);
-  }
+    public void settings() {
+        size(400, 400);
+    }
 
-  /**
-   * Called repeatedly, anything drawn to the screen goes here
-   */
-  public void draw() {
-	  
-	// sample code, delete this stuff
-    stroke(128);
-    line(150, 25, 270, 350);  
+    public void setup() {
+        background(210, 255, 173);
+    }
 
-    stroke(255);
-    line(50, 125, 70, 50);  
-  }
-  
-  // define other methods down here.
+    public void draw() {
+        // Generate random positions for the object
+        x = random(width);
+        y = random(height);
+
+        // Draw the object at the random position
+        ellipse(x, y, 50, 50);
+
+        // Use if statements and logical operators to change the drawing
+        if (x < width / 2 && y < height / 2) {
+            background(220);  // Change background color for the top-left quadrant
+            fill(255, 0, 0);  // Red color
+        } else if (x < width / 2 && y >= height / 2) {
+            background(220);  // Change background color for the bottom-left quadrant
+            fill(0, 0, 255);  // Blue color
+        } else if (x >= width / 2 && y < height / 2) {
+            background(220);  // Change background color for the top-right quadrant
+            fill(0, 255, 0);  // Green color
+        } else {
+            background(220);  // Change background color for the bottom-right quadrant
+            fill(255);  // White color
+        }
+
+        // Display the current time
+        String time = nf(hour(), 2) + ":" + nf(minute(), 2) + ":" + nf(second(), 2);
+        textSize(24);
+        fill(0);
+        text("Current Time: " + time, 20, 30);
+
+        // Additional code for your requirements
+        // You can add more objects and if statements here to further customize the drawing.
+    }
 }
